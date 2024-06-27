@@ -1,0 +1,8 @@
+# update the ABI version when:
+# - nginx upstream has changed
+# - a patch might change the ABI
+# - a build-dependency has changed
+# note that debian revision can increase without breaking ABI
+#
+# TODO: use $(DEB_VERSION_UPSTREAM)
+nginx:abi=nginx-abi-1.26.0-1

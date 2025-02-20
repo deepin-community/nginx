@@ -2,7 +2,7 @@ Source: nginx
 Section: httpd
 Priority: optional
 Maintainer: Debian Nginx Maintainers <pkg-nginx-maintainers@alioth-lists.debian.net>
-Uploaders: Jan Mojžíš <jan.mojzis@gmail.com>
+Uploaders: Jan Mojžíš <janmojzis@debian.org>
 Build-Depends: debhelper-compat (= 13),
                libexpat-dev,
                libgd-dev,
@@ -13,7 +13,7 @@ Build-Depends: debhelper-compat (= 13),
                libxslt1-dev,
                po-debconf,
                zlib1g-dev
-Standards-Version: 4.6.2
+Standards-Version: 4.7.0
 Homepage: https://nginx.org
 Vcs-Git: https://salsa.debian.org/nginx-team/nginx.git
 Vcs-Browser: https://salsa.debian.org/nginx-team/nginx
@@ -50,9 +50,7 @@ Breaks: nginx (<< 1.22.1-8)
 Replaces: nginx (<< 1.22.1-8)
 Architecture: all
 Multi-Arch: foreign
-Depends: ${misc:Depends},
-         nginx (>= ${source:Version}),
-         nginx (<< ${source:Version}.1~),
+Depends: ${misc:Depends}
 Suggests: fcgiwrap, nginx-doc, ssl-cert
 Description: small, powerful, scalable web/proxy server - common files
  Nginx ("engine X") is a high-performance web and reverse proxy server

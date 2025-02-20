@@ -1,3 +1,55 @@
+nginx (1.26.3-2) unstable; urgency=medium
+
+  * Team upload
+  * Upload to unstable 
+
+ -- Jérémy Lal <kapouer@melix.org>  Fri, 07 Feb 2025 12:53:11 +0100
+
+nginx (1.26.3-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream version 1.26.3
+
+ -- Jérémy Lal <kapouer@melix.org>  Wed, 05 Feb 2025 19:08:02 +0100
+
+nginx (1.26.2-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream version 1.26.2
+  * Add Sergey Kandaurov <s.kandaurov@f5.com> pgp public key
+  * Drop upstream patches
+
+  [ Jan Mojžíš ]
+  * d/gbp.conf: add upstream-signatures = on
+  * d/{control,copyright}: update my email to "janmojzis@debian.org"
+  * d/copyright: bump my copyright year
+
+ -- Jérémy Lal <kapouer@melix.org>  Sun, 02 Feb 2025 21:08:45 +0100
+
+nginx (1.26.0-3) unstable; urgency=medium
+
+  * d/control: Resolve dependency loop between nginx and nginx-common.
+    (Fixes: #1082373)
+
+ -- Thomas Ward <teward@ubuntu.com>  Fri, 20 Sep 2024 21:35:42 -0400
+
+nginx (1.26.0-2) unstable; urgency=medium
+
+  [ Jan Mojžíš ]
+  * d/rules: enable QUIC and HTTP/3 module (Closes: 1070488)
+  * d/control: bump Standards-Version: 4.7.0, no changes
+  * d/p/nginx-1.26.1.patch add, backport changes from the nginx 1.26.1 and fix
+    CVE-2024-32760, CVE-2024-31079, CVE-2024-35200, CVE-2024-34161
+  * d/p/CVE-2024-7347.patch add, backport CVE-2024-7347 fix (Closes: 1078971)
+  * d/libnginx-mod.abisubstvars updated comment when ABI needs to be changed
+
+  [ Thomas Ward ]
+  * d/conf/nginx.conf: Update default options for current security
+    practices and standards. SSL protos, disable prefer server
+    ciphers, hide server tokens/versions in responses.
+
+ -- Jan Mojžíš <jan.mojzis@gmail.com>  Mon, 19 Aug 2024 18:46:30 +0200
+
 nginx (1.26.0-1) unstable; urgency=medium
 
   * New upstream version 1.26.0

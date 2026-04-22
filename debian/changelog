@@ -1,3 +1,19 @@
+nginx (1.26.3-3deepin1) UNRELEASED; urgency=medium
+
+  * Fix multiple CVEs for nginx
+    - CVE-2025-53859: Mail: fix STARTTLS handling
+    - CVE-2026-1642: Upstream: detect premature plain text response from
+      SSL backend
+    - CVE-2026-27651: Mail: fixed clearing s->passwd in auth http requests
+    - CVE-2026-27654: Dav: destination length validation for COPY and MOVE
+    - CVE-2026-27784: Mp4: fixed possible integer overflow on 32-bit
+      platforms
+    - CVE-2026-28753: Mail: host validation
+    - CVE-2026-28755: Stream: fixed client certificate validation with OCSP
+    - CVE-2026-32647: Mp4: avoid zero size buffers in output
+
+ -- lichenggang <lichenggang@uniontech.com>  Wed, 22 Apr 2026 17:52:44 +0800
+
 nginx (1.26.3-3) unstable; urgency=medium
 
   [ Jan Mojžíš ]

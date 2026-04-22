@@ -1,3 +1,11 @@
 0003-define_gnu_source-on-other-glibc-based-platforms.patch
 nginx-fix-pidfile.patch
 nginx-ssl_cert_cb_yield.patch
+CVE-2025-53859.patch
+CVE-2026-1642.patch
+CVE-2026-27651.patch
+CVE-2026-27654.patch
+CVE-2026-27784.patch
+CVE-2026-28753.patch
+CVE-2026-28755.patch
+CVE-2026-32647.patch

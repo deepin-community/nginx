@@ -1,6 +1,5 @@
 Source: nginx
 Section: httpd
-Priority: optional
 Maintainer: Debian Nginx Maintainers <pkg-nginx-maintainers@alioth-lists.debian.net>
 Uploaders: Jan Mojžíš <janmojzis@debian.org>
 Build-Depends: debhelper-compat (= 13),
@@ -13,17 +12,15 @@ Build-Depends: debhelper-compat (= 13),
                libxslt1-dev,
                po-debconf,
                zlib1g-dev
-Standards-Version: 4.7.0
+Standards-Version: 4.7.3
 Homepage: https://nginx.org
 Vcs-Git: https://salsa.debian.org/nginx-team/nginx.git
 Vcs-Browser: https://salsa.debian.org/nginx-team/nginx
-Rules-Requires-Root: no
 
 Package: nginx
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         iproute2,
          nginx-common (= ${source:Version}),
 Breaks: nginx-light (<< 1.22.1-6~), nginx-extras (<< 1.22.1-6~), nginx-core (<< 1.22.1-6~),
 Replaces: nginx-light (<< 1.22.1-6~), nginx-extras (<< 1.22.1-6~), nginx-core (<< 1.22.1-6~),
@@ -79,8 +76,7 @@ Description: nginx web/proxy server - development headers
 
 Package: nginx-core
 Architecture: all
-Depends: libnginx-mod-http-geoip (>= ${source:Version}),
-         libnginx-mod-http-geoip (<< ${source:Version}.1~),
+Depends: libnginx-mod-http-geoip2,
          libnginx-mod-http-image-filter (>= ${source:Version}),
          libnginx-mod-http-image-filter (<< ${source:Version}.1~),
          libnginx-mod-http-xslt-filter (>= ${source:Version}),
@@ -89,8 +85,7 @@ Depends: libnginx-mod-http-geoip (>= ${source:Version}),
          libnginx-mod-mail (<< ${source:Version}.1~),
          libnginx-mod-stream (>= ${source:Version}),
          libnginx-mod-stream (<< ${source:Version}.1~),
-         libnginx-mod-stream-geoip (>= ${source:Version}),
-         libnginx-mod-stream-geoip (<< ${source:Version}.1~),
+         libnginx-mod-stream-geoip2,
          nginx (>= ${source:Version}),
          nginx (<< ${source:Version}.1~),
          ${misc:Depends},
@@ -198,7 +193,6 @@ Depends: nginx (= ${binary:Version}),
          libnginx-mod-http-fancyindex,
          libnginx-mod-http-geoip2,
          libnginx-mod-http-headers-more-filter,
-         libnginx-mod-http-lua [amd64 arm64 armel armhf i386 mips64el mipsel s390x riscv64 powerpc],
          libnginx-mod-http-subs-filter,
          libnginx-mod-http-uploadprogress,
          libnginx-mod-http-upstream-fair,

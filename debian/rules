@@ -22,6 +22,9 @@ endif
 
 # configure flags
 basic_configure_flags := \
+			--override-system="$$(dpkg-architecture --query DEB_HOST_GNU_SYSTEM | sed 's/-.*$$//; s/^./\U&/; s/Gnu/\U&/g;')" \
+			--override-release="3.16.0" \
+			--override-machine="$$(dpkg-architecture --query DEB_HOST_GNU_CPU)" \
 			--prefix=/usr/share/nginx \
 			--conf-path=/etc/nginx/nginx.conf \
 			--http-log-path=/var/log/nginx/access.log \
@@ -101,12 +104,13 @@ override_dh_gencontrol:
 build.arch.%:
 	$(MAKE) -C $(BUILDDIR_$*) build
 
+build.src: export flags=$(basic_configure_flags)
 build.src:
 	cp -Pa $(CURDIR)/auto $(BUILDDIR_src)/
 	sed -i '/^# create Makefile/,/^END$$/d' $(BUILDDIR_src)/auto/make $(BUILDDIR_src)/auto/init $(BUILDDIR_src)/auto/install
 	find $(CURDIR)/src -type f -name '*.h' -printf 'src/%P\0' | tar -C $(CURDIR) --null --files-from - -c | tar -C $(BUILDDIR_src)/ -x
 	if [ -e $(CURDIR)/configure ]; then cp $(CURDIR)/configure $(BUILDDIR_src)/; fi
-	echo "NGX_CONF_FLAGS=(" $(basic_configure_flags) ")" > $(BUILDDIR_src)/conf_flags
+	echo "NGX_CONF_FLAGS=( $${flags} )" > $(BUILDDIR_src)/conf_flags
 	pod2man debian/debhelper/dh_nginx > $(BUILDDIR_src)/dh_nginx.1
 
 config.arch.%:

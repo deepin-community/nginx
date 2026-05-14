@@ -98,7 +98,7 @@ sub test {
 		for i in *.so; do
 			echo "load_module $PWD/$i;" >> "$tmp_conf"
 		done
-		echo "events{}" >> "$tmp_conf"
+		echo "events{worker_connections 128;}" >> "$tmp_conf"
 		/usr/sbin/nginx -g "error_log /dev/null; pid /dev/null;" -t -q -c "$PWD/$tmp_conf"
 		rm -f "$tmp_conf"
 	', "dummy", @_);

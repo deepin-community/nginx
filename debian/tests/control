@@ -31,7 +31,6 @@ Depends: nginx-core,
          libnginx-mod-http-geoip2,
          libnginx-mod-http-headers-more-filter,
          libnginx-mod-http-image-filter,
-         libnginx-mod-http-lua [amd64 arm64 armel armhf i386 mips64el mipsel s390x riscv64 powerpc],
          libnginx-mod-http-perl,
          libnginx-mod-http-subs-filter,
          libnginx-mod-http-uploadprogress,
@@ -62,7 +61,6 @@ Depends: nginx-full,
          libnginx-mod-http-geoip2,
          libnginx-mod-http-headers-more-filter,
          libnginx-mod-http-image-filter,
-         libnginx-mod-http-lua [amd64 arm64 armel armhf i386 mips64el mipsel s390x riscv64 powerpc],
          libnginx-mod-http-perl,
          libnginx-mod-http-subs-filter,
          libnginx-mod-http-uploadprogress,
@@ -93,7 +91,6 @@ Depends: nginx-light,
          libnginx-mod-http-geoip2,
          libnginx-mod-http-headers-more-filter,
          libnginx-mod-http-image-filter,
-         libnginx-mod-http-lua [amd64 arm64 armel armhf i386 mips64el mipsel s390x riscv64 powerpc],
          libnginx-mod-http-perl,
          libnginx-mod-http-subs-filter,
          libnginx-mod-http-uploadprogress,
@@ -124,7 +121,6 @@ Depends: nginx-extras,
          libnginx-mod-http-geoip2,
          libnginx-mod-http-headers-more-filter,
          libnginx-mod-http-image-filter,
-         libnginx-mod-http-lua [amd64 arm64 armel armhf i386 mips64el mipsel s390x riscv64 powerpc],
          libnginx-mod-http-perl,
          libnginx-mod-http-subs-filter,
          libnginx-mod-http-uploadprogress,
@@ -149,3 +145,15 @@ Depends: nginx-light, curl
 Tests: ssi-module-test
 Restrictions: allow-stderr, isolation-container, needs-root,
 Depends: nginx, nginx-core, curl
+
+Tests: proxy
+Restrictions: allow-stderr isolation-container needs-root
+Depends: nginx-light, curl
+
+Tests: fastcgi-RFC9112
+Restrictions: allow-stderr,
+Depends: nginx-light, curl, libfcgi-perl
+
+Tests: uwsgi-RFC9112
+Restrictions: allow-stderr, isolation-container, needs-root,
+Depends: nginx-light, curl, uwsgi-plugin-python3

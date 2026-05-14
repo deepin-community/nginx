@@ -1,18 +1,51 @@
-nginx (1.26.3-3deepin1) UNRELEASED; urgency=medium
+nginx (1.26.3-3+deb13u4) trixie; urgency=medium
 
-  * Fix multiple CVEs for nginx
-    - CVE-2025-53859: Mail: fix STARTTLS handling
-    - CVE-2026-1642: Upstream: detect premature plain text response from
-      SSL backend
-    - CVE-2026-27651: Mail: fixed clearing s->passwd in auth http requests
-    - CVE-2026-27654: Dav: destination length validation for COPY and MOVE
-    - CVE-2026-27784: Mp4: fixed possible integer overflow on 32-bit
-      platforms
-    - CVE-2026-28753: Mail: host validation
-    - CVE-2026-28755: Stream: fixed client certificate validation with OCSP
-    - CVE-2026-32647: Mp4: avoid zero size buffers in output
+  * d/conf/*_params: use "$host" instead of "$http_host"
+    * "$http_host" forwards the Host header exactly as supplied by the client
+      and may not match the effective request target (e.g. absolute-form
+      requests with a conflicting Host header)
+      this can expose inconsistent or attacker-controlled host values to
+      backend applications (uwsgi, fastcgi, scgi, proxy)
+    * switch to "$host" as a safer, normalized alternative
+    * note: this changes behaviour, as "$host" does not preserve the
+      client-supplied port; deployments relying on "$http_host" including
+      a port number may be affected
+    * it is workaround for Debian bug #1126960 for stable/oldstable release
 
- -- lichenggang <lichenggang@uniontech.com>  Wed, 22 Apr 2026 17:52:44 +0800
+ -- Jan Mojžíš <janmojzis@debian.org>  Mon, 20 Apr 2026 17:52:06 +0000
+
+nginx (1.26.3-3+deb13u3) trixie; urgency=medium
+
+  * backport changes from upstream nginx, fixes for buffer overflow
+    vulnerability in the ngx_http_dav_module (CVE-2026-27654), buffer overflow
+    vulnerabilities in the ngx_http_mp4_module (CVE-2026-27784, CVE-2026-32647),
+    mail session authentication vulnerabilities (CVE-2026-27651, CVE-2026-28753)
+    and OCSP result bypass vulnerability in stream (CVE-2026-28755)
+    * d/p/CVE-2026-27651.patch add
+    * d/p/CVE-2026-27654.patch add
+    * d/p/CVE-2026-27784.patch add
+    * d/p/CVE-2026-28753.patch add
+    * d/p/CVE-2026-28755.patch add
+    * d/p/CVE-2026-32647.patch add
+
+ -- Jan Mojžíš <janmojzis@debian.org>  Mon, 30 Mar 2026 17:41:51 +0000
+
+nginx (1.26.3-3+deb13u2) trixie-security; urgency=medium
+
+  * d/p/CVE-2026-1642: backport upstream patch for CVE-2026-1642.
+    Fixes problem when an attacker with a man-in-the-middle position on the
+    upstream server side—along with conditions beyond the attacker's
+    control—may be able to inject plain text data into the response
+    from an upstream proxied server.
+
+ -- Jan Mojžíš <janmojzis@debian.org>  Tue, 10 Feb 2026 07:47:34 +0100
+
+nginx (1.26.3-3+deb13u1) trixie; urgency=medium
+
+  * d/p/CVE-2025-53859.patch add, fix potential information leak
+    in ngx_mail_smtp_module (CVE-2025-53859).
+
+ -- Jan Mojžíš <janmojzis@debian.org>  Fri, 29 Aug 2025 16:10:13 +0200
 
 nginx (1.26.3-3) unstable; urgency=medium
 

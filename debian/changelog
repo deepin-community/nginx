@@ -1,3 +1,19 @@
+nginx (1.26.3-3+deb13u5) trixie-security; urgency=medium
+
+  * backport changes from upstream nginx, HTTP/3 address spoofing
+    (CVE-2026-40460), buffer overflow in the ngx_http_rewrite_module
+    (CVE-2026-42945), buffer overread in the ngx_http_scgi_module and
+    ngx_http_uwsgi_module (CVE-2026-42946), resolver use-after-free in OCSP
+    (CVE-2026-40701), buffer overread in the ngx_http_charset_module
+    (CVE-2026-42934)
+    * d/p/CVE-2026-40460.patch add
+    * d/p/CVE-2026-42945.patch add
+    * d/p/CVE-2026-42946.patch add
+    * d/p/CVE-2026-40701.patch add
+    * d/p/CVE-2026-42934.patch add
+
+ -- Jan Mojžíš <janmojzis@debian.org>  Fri, 15 May 2026 14:13:33 +0000
+
 nginx (1.26.3-3+deb13u4) trixie; urgency=medium
 
   * d/conf/*_params: use "$host" instead of "$http_host"

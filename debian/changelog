@@ -1,3 +1,36 @@
+nginx (1.26.3-3+deb13u9) trixie-security; urgency=medium
+  * d/p/CVE-2026-42533.patch update: keep private script headers out of
+    auto/modules' ngx_module_deps so third-party modules can be built
+    against nginx-dev. (Closes: #1147527)
+  * d/t/nginx-dev-test.sh add, verify that nginx-dev can build and load
+    a minimal third-party dynamic HTTP module.
+
+ -- Jan Mojžíš <janmojzis@debian.org>  Tue, 15 Sep 2026 09:28:28 +0000
+
+nginx (1.26.3-3+deb13u8) trixie-security; urgency=medium
+
+  * d/t/abicheck add, detect unintended API changes in the nginx-dev
+    package by comparing header files with previous version
+  * d/p/CVE-2026-56434.patch add, backport fix for use-after-free when using
+    ngx_http_ssi_module (CVE-2026-56434)
+  * d/p/CVE-2026-60005.patch add, backport fix for memory disclosure
+    vulnerability when using ngx_http_slice_module (CVE-2026-60005)
+  * d/p/CVE-2026-42533.patch add, backport fix for buffer overflow
+    vulnerability when using map with regex (CVE-2026-42533)
+    A big thanks to Aron Xu for preparing the patch.
+
+ -- Jan Mojžíš <janmojzis@debian.org>  Fri, 04 Sep 2026 17:02:15 +0000
+
+nginx (1.26.3-3+deb13u7) trixie-security; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Upstream: limit header length for HTTP/2 and gRPC (CVE-2026-42055)
+    (Closes: #1140359)
+  * Charset: fixed another rare buffer overread in recode_from_utf8()
+    (CVE-2026-48142) (Closes: #1140361)
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 27 Jun 2026 22:33:06 +0200
+
 nginx (1.26.3-3+deb13u6) trixie-security; urgency=medium
 
   * Apply both patches to fix CVE-2026-42946. In the previous version,
